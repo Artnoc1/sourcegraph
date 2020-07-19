@@ -19,7 +19,7 @@
     "build-ts": "tsc -b .",
     "graphql": "gulp graphQLTypes",
     "graphql-lint": "graphql-schema-linter --old-implements-syntax --comment-descriptions cmd/frontend/graphqlbackend/schema.graphql",
-    "prepublish": "gulp generate",
+    "prepublish": "yarn run snyk-protect && gulp generate",
     "test": "jest --testPathIgnorePatterns end-to-end regression integration storybook",
     "test-e2e": "TS_NODE_PROJECT=web/src/end-to-end/tsconfig.json mocha ./web/src/end-to-end/end-to-end.test.ts",
     "cover-e2e": "nyc --hook-require=false yarn test-e2e",
@@ -27,7 +27,8 @@
     "build-storybook": "build-storybook -c .storybook",
     "cover-storybook": "nyc --hook-require=false yarn jest .storybook/coverage",
     "percy-storybook": "PERCY_TOKEN=${PERCY_STORYBOOK_TOKEN} percy-storybook --widths=768",
-    "deduplicate": "yarn-deduplicate -s fewer"
+    "deduplicate": "yarn-deduplicate -s fewer",
+    "snyk-protect": "snyk protect"
   },
   "browserslist": [
     "last 1 version",
@@ -238,7 +239,7 @@
     "ts-node": "^8.10.2",
     "typescript": "^3.9.2",
     "utc-version": "^2.0.2",
-    "web-ext": "^4.2.0",
+    "web-ext": "^4.3.0",
     "webpack": "^4.43.0",
     "webpack-dev-server": "^3.11.0",
     "worker-loader": "^2.0.0",
@@ -309,9 +310,11 @@
     "utility-types": "^3.10.0",
     "uuid": "^8.1.0",
     "webext-domain-permission-toggle": "^1.0.1",
-    "webextension-polyfill": "^0.6.0"
+    "webextension-polyfill": "^0.6.0",
+    "snyk": "^1.362.1"
   },
   "resolutions": {
     "history": "4.5.1"
-  }
+  },
+  "snyk": true
 }
